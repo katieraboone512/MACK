@@ -61,12 +61,25 @@
 		
 		<!-- Scripts (Javascript for Quote Generator in Section 2) -->
         	<script>
-          	const quote = document.querySelector("#quote");
-          	const author = document.querySelector("#author");
-          	window.onload = getQuote;
-           	function getQuote() {
-            		fetch("https://quotable.io/random").then(res => res.json()).then(data => {quote.innerHTML = `"${data.content}"`;author.innerHTML = data.author;})
-          	}
+
+var url = "https://www.themealdb.com/api/json/v1/1/random.php";
+
+$.getJSON(url, function (data) {
+    console.log(data);
+    var output = data.meals;
+
+    for (var i = 0; i < output.length; i++) {
+        display.innerHTML +=
+
+            `<img src="${output[i].strMealThumb}" alt="${output[i].strMeal}"> <br>
+        
+        
+        ${output[i].strMeal} <br>
+        Category:  ${output[i].strCategory} <br>
+        Source: <a href="${output[i].strSource}">${output[i].strSource}</a>`;
+    }
+
+});
     		</script>
 	</body>	
 </html>
